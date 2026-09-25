@@ -1,0 +1,454 @@
+/* Стили темы «Эвакуатор Гарант». Переносятся в theme/assets/css/site.css без изменений. */
+
+/* ---------- База ---------- */
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--wp--preset--color--black);
+  color: var(--wp--preset--color--white);
+  font-family: var(--wp--preset--font-family--body);
+  font-size: var(--wp--preset--font-size--m);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body::after { /* зерно */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+a { color: inherit; }
+h1, h2, h3 {
+  font-family: var(--wp--preset--font-family--display);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5em;
+}
+h2 { font-size: var(--wp--preset--font-size--xl); text-transform: uppercase; }
+h3 { font-size: var(--wp--preset--font-size--l); }
+:focus-visible { outline: 3px solid var(--wp--preset--color--yellow); outline-offset: 3px; }
+
+.garant-section { position: relative; padding-top: clamp(4rem, 3rem + 4vw, 7rem); padding-bottom: clamp(4rem, 3rem + 4vw, 7rem); }
+.garant-lead { color: var(--wp--preset--color--muted); font-size: var(--wp--preset--font-size--l); margin-top: 0; margin-bottom: 2.5rem; }
+.garant-nowrap { white-space: nowrap; }
+
+.garant-icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.garant-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--wp--preset--font-family--display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  color: var(--wp--preset--color--white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.garant-phone .garant-icon { color: var(--wp--preset--color--yellow); }
+.garant-phone:hover { color: var(--wp--preset--color--yellow); }
+
+/* ---------- Кнопки ---------- */
+.wp-block-button__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 1rem 1.6rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: var(--wp--preset--font-size--m);
+  text-decoration: none;
+  background: var(--wp--preset--color--yellow);
+  color: var(--wp--preset--color--black);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.wp-block-button__link:hover { background: var(--wp--preset--color--yellow-deep); transform: translateY(-2px); }
+.is-style-outline .wp-block-button__link {
+  background: transparent;
+  color: var(--wp--preset--color--white);
+  box-shadow: inset 0 0 0 2px rgb(244 244 241 / 0.45);
+}
+.is-style-outline .wp-block-button__link:hover { background: rgb(244 244 241 / 0.08); box-shadow: inset 0 0 0 2px var(--wp--preset--color--yellow); }
+
+/* ---------- Шапка ---------- */
+.garant-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.garant-header.is-scrolled {
+  background: rgb(11 11 13 / 0.72);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.06);
+}
+.garant-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; padding-bottom: 1rem; }
+.garant-logo {
+  font-family: var(--wp--preset--font-family--display);
+  font-weight: 900;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--wp--preset--color--white);
+}
+.garant-logo span { color: var(--wp--preset--color--yellow); }
+.garant-header__contacts { display: flex; align-items: center; gap: 1.25rem; }
+.garant-header__phone { font-size: 1.125rem; }
+.garant-header__tg, .garant-header__call {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--wp--preset--color--white);
+  box-shadow: inset 0 0 0 2px rgb(244 244 241 / 0.25);
+  text-decoration: none;
+}
+.garant-header__tg:hover { box-shadow: inset 0 0 0 2px var(--wp--preset--color--yellow); color: var(--wp--preset--color--yellow); }
+.garant-header__call { display: none; background: var(--wp--preset--color--yellow); color: var(--wp--preset--color--black); box-shadow: none; width: 48px; height: 48px; }
+@media (max-width: 781px) {
+  .garant-header__phone, .garant-header__tg { display: none; }
+  .garant-header__call { display: grid; }
+}
+
+/* ---------- Hero ---------- */
+.garant-hero {
+  --hero-h: max(640px, min(100svh, 900px));
+  position: relative;
+  min-height: var(--hero-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--wp--preset--color--black);
+}
+.garant-hero__media { position: absolute; inset: 0; overflow: hidden; }
+.garant-hero__frame {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: max(100%, calc(var(--hero-h) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  transform: translateY(-50%);
+}
+.garant-hero__zoom { position: absolute; inset: 0; transform-origin: 62% 55%; }
+.garant-hero__zoom img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.garant-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(11 11 13 / 0.96) 0%, rgb(11 11 13 / 0.86) 32%, rgb(11 11 13 / 0.35) 56%, rgb(11 11 13 / 0) 74%),
+    linear-gradient(0deg, var(--wp--preset--color--black) 0%, rgb(11 11 13 / 0) 22%);
+}
+.garant-beacon {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s, 8%);
+  aspect-ratio: 3 / 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(255 176 48 / 0.95), rgb(255 140 0 / 0.35) 55%, transparent);
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.garant-hero__content { position: relative; z-index: 1; padding-top: 7rem; padding-bottom: 6rem; }
+.garant-hero__text > * { max-width: 640px; }
+
+.garant-badge {
+  display: inline-block;
+  margin: 0;
+  padding: 0.45em 1.1em;
+  background: var(--wp--preset--color--yellow);
+  color: var(--wp--preset--color--black);
+  font-family: var(--wp--preset--font-family--display);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+.garant-hero__title { font-size: var(--wp--preset--font-size--xxl); text-transform: uppercase; margin: 1.25rem 0 1rem; }
+.garant-hero__accent {
+  display: inline-block;
+  color: var(--wp--preset--color--yellow);
+  font-size: 1.35em;
+  line-height: 1;
+  text-shadow: 0 0 28px rgb(255 194 14 / 0.45);
+}
+.garant-slogan {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--display);
+  font-weight: 600;
+  font-size: var(--wp--preset--font-size--s);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.garant-dot { color: var(--wp--preset--color--yellow); padding: 0 0.25em; }
+.garant-phones { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; margin: 1.75rem 0; }
+.garant-situations { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.garant-situations li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+  font-size: var(--wp--preset--font-size--s);
+}
+.garant-situations .garant-icon { color: var(--wp--preset--color--yellow); }
+
+.garant-hero__strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.garant-hero__strip p {
+  margin: 0;
+  white-space: nowrap;
+  font-family: var(--wp--preset--font-family--display);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--muted);
+}
+.garant-chevrons {
+  flex: 1;
+  height: 12px;
+  background: linear-gradient(-55deg, transparent 0 30%, var(--wp--preset--color--yellow) 30% 62%, transparent 62%) 0 0 / 24px 100% repeat-x;
+  opacity: 0.9;
+}
+
+.garant-hero__mobile { display: none; }
+@media (max-width: 781px) {
+  .garant-hero { min-height: 100svh; justify-content: flex-start; }
+  .garant-hero__media { display: none; }
+  .garant-hero__content { padding-top: 6rem; padding-bottom: 1.5rem; }
+  .garant-hero__mobile { /* фон hero: эвакуатор внизу, текст ложится на тёмное небо */
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    margin: 0;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 40%);
+  }
+  .garant-hero__mobile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgb(11 11 13 / 0.2), rgb(11 11 13 / 0.45)); }
+  .garant-hero__mobile img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .garant-hero__strip { position: relative; margin-top: auto; flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .garant-hero__strip p { white-space: normal; text-align: center; }
+  .garant-chevrons { flex: none; }
+  .garant-phones { flex-direction: column; }
+  .garant-hero .wp-block-buttons { flex-direction: column; }
+  .garant-hero .wp-block-button__link { width: 100%; }
+}
+
+/* ---------- Фоны-обложки ---------- */
+.garant-parallax .wp-block-cover__image-background { top: -48px; bottom: -48px; height: calc(100% + 96px); will-change: transform; }
+
+/* ---------- Цены ---------- */
+.garant-prices .wp-block-cover__background { background: linear-gradient(rgb(11 11 13 / 0.88), rgb(11 11 13 / 0.95)); }
+.garant-price-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+.garant-price {
+  position: relative;
+  flex: 0 1 calc((100% - 2rem) / 3);
+  padding: 1.5rem 1.5rem 1.75rem;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgb(31 32 38 / 0.82);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.garant-price::before { content: ""; position: absolute; left: 0; top: 0; width: 48px; height: 3px; background: var(--wp--preset--color--yellow); }
+.garant-price:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px var(--wp--preset--color--yellow), 0 14px 36px -14px rgb(255 194 14 / 0.4); }
+.garant-price__name { margin: 0 0 1rem; min-height: 2.6em; font-weight: 600; font-size: var(--wp--preset--font-size--l); line-height: 1.3; }
+.garant-price__value {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--wp--preset--color--yellow);
+}
+@media (max-width: 1023px) { .garant-price { flex-basis: calc((100% - 1rem) / 2); } }
+@media (max-width: 599px) { .garant-price { flex-basis: 100%; } .garant-price__name { min-height: 0; } }
+
+/* ---------- Почему мы ---------- */
+.garant-why { background: var(--wp--preset--color--ink); }
+.garant-why::before { /* шеврон на стыке с «Ценами» */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 6px;
+  opacity: 0.6;
+  background: linear-gradient(-55deg, transparent 0 30%, var(--wp--preset--color--yellow) 30% 62%, transparent 62%) 0 0 / 16px 100% repeat-x;
+}
+.garant-why .wp-block-columns { gap: 1rem; }
+.garant-why__item {
+  padding: 1.75rem;
+  border-radius: 16px;
+  background: var(--wp--preset--color--graphite);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+.garant-why__icon { width: 48px; height: 48px; margin-bottom: 1.25rem; color: var(--wp--preset--color--yellow); stroke-width: 1.75; }
+.garant-why__item p { margin: 0; color: var(--wp--preset--color--muted); }
+@media (min-width: 782px) and (max-width: 1023px) { .garant-why .wp-block-column { flex-basis: calc(50% - 0.5rem); } }
+
+/* ---------- Галерея ---------- */
+.garant-gallery .wp-block-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.garant-gallery img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; }
+@media (max-width: 781px) { .garant-gallery .wp-block-gallery { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- FAQ ---------- */
+.wp-block-details { max-width: 52rem; border-bottom: 1px solid rgb(255 255 255 / 0.1); }
+.wp-block-details summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--wp--preset--font-size--l);
+}
+.wp-block-details summary::-webkit-details-marker { display: none; }
+.wp-block-details summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--wp--preset--font-family--display);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--wp--preset--color--yellow);
+  transition: transform 0.25s ease;
+}
+.wp-block-details[open] summary::after { transform: rotate(45deg); }
+.wp-block-details summary:hover { color: var(--wp--preset--color--yellow); }
+.wp-block-details p { margin: 0 0 1.25rem; max-width: 44rem; color: rgb(244 244 241 / 0.8); }
+
+/* ---------- Контакты ---------- */
+.garant-contacts .wp-block-cover__background { background: linear-gradient(rgb(11 11 13 / 0.85), rgb(11 11 13 / 0.95)); }
+.garant-contacts__title { position: relative; text-wrap: balance; }
+.garant-contacts__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35em;
+  width: min(100%, 12rem);
+  height: 10px;
+  background: linear-gradient(-55deg, transparent 0 30%, var(--wp--preset--color--yellow) 30% 62%, transparent 62%) 0 0 / 20px 100% repeat-x;
+}
+.garant-contacts .wp-block-columns { gap: 3rem; margin-top: 3rem; }
+.garant-contacts__main .garant-phones { flex-direction: column; margin-top: 0; }
+.garant-contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
+.garant-contact-list li { display: flex; gap: 0.9rem; align-items: flex-start; }
+.garant-contact-list .garant-icon { width: 24px; height: 24px; margin-top: 0.15rem; color: var(--wp--preset--color--yellow); }
+.garant-contact-list__label { display: block; font-size: var(--wp--preset--font-size--s); color: var(--wp--preset--color--muted); }
+.garant-contact-list a { color: var(--wp--preset--color--yellow); }
+.garant-max[hidden] { display: none; }
+
+/* ---------- Подвал ---------- */
+.garant-footer { padding-top: 2.5rem; padding-bottom: 2.5rem; border-top: 2px solid var(--wp--preset--color--yellow); background: var(--wp--preset--color--black); }
+.garant-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem 3rem; }
+.garant-footer__phones { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+.garant-footer .garant-phone { font-size: 1.05rem; }
+.garant-footer p { margin: 0; font-size: var(--wp--preset--font-size--s); color: var(--wp--preset--color--muted); }
+
+/* ---------- Закреплённая кнопка «Позвонить» ---------- */
+.garant-sticky-call { display: none; }
+@media (max-width: 781px) {
+  body { padding-bottom: 88px; }
+  .garant-sticky-call {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem;
+    border-radius: 14px;
+    background: var(--wp--preset--color--yellow);
+    color: var(--wp--preset--color--black);
+    font-family: var(--wp--preset--font-family--display);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.8);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+}
+
+/* ---------- Анимации (только если пользователь не просил меньше движения) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: var(--reveal-delay, 0ms); }
+  .js .reveal.is-visible { opacity: 1; transform: none; }
+
+  .garant-hero__title .word { display: inline-block; opacity: 0; transform: translateY(0.45em); animation: garant-word 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; animation-delay: calc(var(--i) * 90ms + 150ms); }
+  .garant-hero__zoom { animation: garant-zoom 14s ease-out both; }
+  .garant-beacon { animation: garant-beacon 1.4s ease-in-out infinite alternate; }
+  .garant-pulse .wp-block-button__link, .garant-sticky-call { animation: garant-pulse 2.4s ease-out infinite; }
+  .garant-chevrons { animation: garant-chevrons 0.9s linear infinite; }
+
+  .js .garant-why__icon { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s ease 0.2s; }
+  .js .is-visible .garant-why__icon { stroke-dashoffset: 0; }
+
+  .js .garant-contacts__title::after { width: 0; transition: width 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s; }
+  .js .garant-contacts__title.is-visible::after { width: min(100%, 12rem); }
+
+  .js .garant-sticky-call:not(.is-visible) { transform: translateY(150%); opacity: 0; pointer-events: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (interpolate-size: allow-keywords) {
+    :root { interpolate-size: allow-keywords; }
+    .wp-block-details::details-content { block-size: 0; overflow: hidden; transition: block-size 0.35s ease, content-visibility 0.35s allow-discrete; }
+    .wp-block-details[open]::details-content { block-size: auto; }
+  }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+@keyframes garant-word { to { opacity: 1; transform: none; } }
+@keyframes garant-zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+@keyframes garant-beacon { from { opacity: 0.25; } to { opacity: 1; } }
+@keyframes garant-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(255 194 14 / 0.55); }
+  70%, 100% { box-shadow: 0 0 0 18px rgb(255 194 14 / 0); }
+}
+@keyframes garant-chevrons { to { background-position: 24px 0; } }

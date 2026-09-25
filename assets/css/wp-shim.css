@@ -1,0 +1,47 @@
+/* ТОЛЬКО ПРОТОТИП. В теме всё это генерирует WordPress из theme.json и стилей core-блоков. */
+
+@font-face { font-family: Unbounded; font-weight: 200 900; font-display: swap; src: url("../fonts/unbounded-cyrillic.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: Unbounded; font-weight: 200 900; font-display: swap; src: url("../fonts/unbounded-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+20BD, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: Onest; font-weight: 100 900; font-display: swap; src: url("../fonts/onest-cyrillic.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: Onest; font-weight: 100 900; font-display: swap; src: url("../fonts/onest-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+20BD, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root {
+  --wp--preset--color--black: #0B0B0D;
+  --wp--preset--color--ink: #141418;
+  --wp--preset--color--graphite: #1F2026;
+  --wp--preset--color--yellow: #FFC20E;
+  --wp--preset--color--yellow-deep: #E6A700;
+  --wp--preset--color--white: #F4F4F1;
+  --wp--preset--color--muted: #9A9DA6;
+  --wp--preset--font-family--display: Unbounded, "Arial Black", sans-serif;
+  --wp--preset--font-family--body: Onest, system-ui, sans-serif;
+  --wp--preset--font-size--s: 0.875rem;
+  --wp--preset--font-size--m: 1rem;
+  --wp--preset--font-size--l: clamp(1.125rem, 1rem + 0.4vw, 1.3125rem);
+  --wp--preset--font-size--xl: clamp(1.625rem, 1.1rem + 2vw, 2.625rem);
+  --wp--preset--font-size--xxl: clamp(1.5rem, 0.9rem + 2.6vw, 3rem);
+  --wp--style--global--content-size: 1200px;
+  --wp--style--root--padding-left: clamp(1rem, 4vw, 3rem);
+  --wp--style--root--padding-right: clamp(1rem, 4vw, 3rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; height: auto; }
+
+.has-global-padding { padding-left: var(--wp--style--root--padding-left); padding-right: var(--wp--style--root--padding-right); }
+.is-layout-constrained > :where(:not(.alignfull)) { max-width: var(--wp--style--global--content-size); margin-left: auto; margin-right: auto; }
+.is-layout-flex { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+
+.wp-block-columns { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.wp-block-column { flex: 1 1 0; min-width: 0; }
+@media (max-width: 781px) { .wp-block-columns { flex-direction: column; } }
+
+.wp-block-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+.wp-block-cover { position: relative; display: flex; overflow: hidden; }
+.wp-block-cover__image-background { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; margin: 0; border: 0; z-index: 0; }
+.wp-block-cover__background { position: absolute; inset: 0; z-index: 1; }
+.wp-block-cover__inner-container { position: relative; z-index: 2; width: 100%; }
+
+.wp-block-image, .wp-block-gallery { margin-top: 0; margin-bottom: 0; }
+.screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
