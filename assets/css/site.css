@@ -212,8 +212,10 @@ h3 { font-size: var(--wp--preset--font-size--l); }
   gap: 0.5rem;
   padding: 0.5rem 0.9rem;
   border-radius: 999px;
-  background: rgb(255 255 255 / 0.06);
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+  background: rgb(11 11 13 / 0.62); /* плашки лежат на картинке — нужна своя подложка */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14);
   font-size: var(--wp--preset--font-size--s);
 }
 .garant-situations .garant-icon { color: var(--wp--preset--color--yellow); }
@@ -262,10 +264,10 @@ h3 { font-size: var(--wp--preset--font-size--l); }
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40%);
     mask-image: linear-gradient(to bottom, transparent 0, #000 40%);
   }
-  .garant-hero__mobile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgb(11 11 13 / 0.2), rgb(11 11 13 / 0.45)); }
+  .garant-hero__mobile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgb(11 11 13 / 0.45), rgb(11 11 13 / 0.72)); }
   .garant-hero__mobile img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
   .garant-hero__strip { position: relative; margin-top: auto; flex-direction: column; align-items: stretch; gap: 0.75rem; }
-  .garant-hero__strip p { white-space: normal; text-align: center; }
+  .garant-hero__strip p { white-space: normal; text-align: center; color: rgb(244 244 241 / 0.85); }
   .garant-chevrons { flex: none; }
   .garant-phones { flex-direction: column; }
   .garant-hero .wp-block-buttons { flex-direction: column; }
@@ -305,6 +307,79 @@ h3 { font-size: var(--wp--preset--font-size--l); }
 @media (max-width: 1023px) { .garant-price { flex-basis: calc((100% - 1rem) / 2); } }
 @media (max-width: 599px) { .garant-price { flex-basis: 100%; } .garant-price__name { min-height: 0; } }
 
+/* ---------- Автовоз ---------- */
+.garant-autovoz__cols { gap: clamp(2rem, 1rem + 4vw, 5rem); align-items: center; }
+.garant-autovoz__media { flex: 0 0 min(42%, 520px); }
+.garant-autovoz__media figure { margin: 0; }
+.garant-autovoz__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.9), inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+.garant-autovoz__body .garant-lead { margin-bottom: 2rem; }
+.garant-route { /* маршрут: точки на жёлтой разметке */
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  position: relative;
+}
+.garant-route::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 12px;
+  bottom: 12px;
+  width: 4px;
+  background: linear-gradient(var(--wp--preset--color--yellow) 50%, transparent 50%) 0 0 / 100% 16px repeat-y;
+}
+.garant-route li {
+  position: relative;
+  padding-left: 2.75rem;
+  font-family: var(--wp--preset--font-family--display);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 1.9rem);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.garant-route li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background: var(--wp--preset--color--black);
+  box-shadow: inset 0 0 0 5px var(--wp--preset--color--yellow), 0 0 18px rgb(255 194 14 / 0.45);
+}
+.garant-autovoz__ways {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgb(255 194 14 / 0.12);
+  color: var(--wp--preset--color--yellow);
+  font-weight: 700;
+  font-size: var(--wp--preset--font-size--s);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.garant-autovoz__text { max-width: 34rem; margin: 0 0 2rem; color: rgb(244 244 241 / 0.8); }
+.garant-autovoz .wp-block-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+@media (max-width: 781px) {
+  .garant-autovoz__media { flex-basis: auto; }
+  .garant-autovoz__media img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 70%; }
+  .garant-autovoz .wp-block-buttons { flex-direction: column; }
+  .garant-autovoz .wp-block-button__link { width: 100%; }
+}
+
 /* ---------- Почему мы ---------- */
 .garant-why { background: var(--wp--preset--color--ink); }
 .garant-why::before { /* шеврон на стыке с «Ценами» */
@@ -329,8 +404,15 @@ h3 { font-size: var(--wp--preset--font-size--l); }
 @media (min-width: 782px) and (max-width: 1023px) { .garant-why .wp-block-column { flex-basis: calc(50% - 0.5rem); } }
 
 /* ---------- Галерея ---------- */
-.garant-gallery .wp-block-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.garant-gallery img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; }
+.garant-gallery .wp-block-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.garant-gallery .wp-block-image { margin: 0; }
+.garant-gallery a { position: relative; display: block; overflow: hidden; border-radius: 12px; cursor: zoom-in; }
+.garant-gallery a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 2px transparent; transition: box-shadow 0.25s ease; }
+.garant-gallery a:hover::after, .garant-gallery a:focus-visible::after { box-shadow: inset 0 0 0 2px var(--wp--preset--color--yellow); }
+.garant-gallery img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.garant-gallery a:hover img { transform: scale(1.04); }
+.pswp { --pswp-bg: var(--wp--preset--color--black); --pswp-icon-color: var(--wp--preset--color--white); }
+.pswp__counter { font-family: var(--wp--preset--font-family--display); }
 @media (max-width: 781px) { .garant-gallery .wp-block-gallery { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- FAQ ---------- */
@@ -361,7 +443,7 @@ h3 { font-size: var(--wp--preset--font-size--l); }
 .wp-block-details p { margin: 0 0 1.25rem; max-width: 44rem; color: rgb(244 244 241 / 0.8); }
 
 /* ---------- Контакты ---------- */
-.garant-contacts .wp-block-cover__background { background: linear-gradient(rgb(11 11 13 / 0.85), rgb(11 11 13 / 0.95)); }
+.garant-contacts { background: var(--wp--preset--color--ink); }
 .garant-contacts__title { position: relative; text-wrap: balance; }
 .garant-contacts__title::after {
   content: "";
